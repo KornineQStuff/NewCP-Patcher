@@ -22,7 +22,9 @@
 
 ### <p align="center">Installation</p>
 
---------------
-|            |
-|            |
---------------
+Method 1        | Method 2
+--------------- | -------------
+1. Download src  | 1. Go to [Releases](https://github.com/KornineQ/NewCP-Patcher/releases)
+2. Go here %localappdata%\newcp\app-1.6.1\resources\app  | 2. Download it
+3. Delete everything from that dir  | 3. Unzip
+4. Paste everything to dir where you deleted files, patched files.  | 4. Done
