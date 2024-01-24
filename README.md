@@ -1,7 +1,3 @@
-<h1>OUTDATED!</h1>
-
------
-
 <p align= "center">
   <kbd>
     <img  src="https://kornineq.de/cplauncher/newcplogin1.png">
