@@ -5,8 +5,8 @@ RPC.register(APPLICATION_ID);
 
 function onRpcReady() {
     rpcClient.setActivity({
-        state: "NewCP Patched by kornineq on github",
-        details: "KornineQ/newcp-patcher",
+        state: "NewCP Patched by KornineQStuff on github",
+        details: "KornineQStuff/NewCP-Patcher",
         startTimestamp: Date.now(),
         largeImageKey: "ncpapp",
         instance: true,

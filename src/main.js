@@ -6,7 +6,7 @@ const path = require("path");
 if (require("electron-squirrel-startup")) app.quit();
 
 // Check for updates except for macOS
-if (process.platform != "darwin") require("update-electron-app")({ repo: "KornineQ/newcp-patcher" });
+if (process.platform != "darwin") require("update-electron-app")({ repo: "KornineQStuff/NewCP-Patcher" });
 
 const ALLOWED_ORIGINS = [
   "https://newcp.net",
