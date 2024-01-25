@@ -1,21 +1,30 @@
-# About
+<p align= "center">
+  <kbd>
+    <img  src="https://kornineq.de/cplauncher/newcplogin1.png">
+  </kbd>
+</p>
 
-NewCP-App is an electron based client for running New Club Penguin. It comes with a builtin flash player, and uses a version of Electron from before flash support was dropped. 
+-----
 
-# Contributing
+### <p align="center">💙 NewCP Patcher 💙</p>
+<p align= "center">
+  <img src="https://img.shields.io/github/last-commit/KornineQ/NewCP-Patcher">
+  <img src="https://img.shields.io/github/license/KornineQ/NewCP-Patcher">
+  <br>
+  <img src="https://img.shields.io/github/stars/KornineQ/NewCP-Patcher">
+  <img src="https://img.shields.io/github/forks/KornineQ/NewCP-Patcher">
+  <img src="https://img.shields.io/github/downloads/KornineQ/NewCP-Patcher/total.svg">
+  <br>
+  <img src="https://img.shields.io/github/languages/top/KornineQ/NewCP-Patcher">
+</p>
 
-All contributions are welcome. People who discover bugs with the client may open new issues (please keep in mind that you should only open a new issue if it is a bug with the client, NOT a bug with the game), and people may open pull requests to add new features or fix bugs. Do not expect to be paid for contributing, however if your contribution was meaningful, you may be credited. Active contributors may be recruited as a developer for NewCP, but this is not guaranteed. 
+-----
 
-**NOTE: The following instructions are for people who want to contribute. If you are here to play NewCP, please use our prebuilt binaries from [here](https://github.com/New-Club-Penguin/NewCP-App-Build/releases)**.
+### <p align="center">Installation</p>
 
-### Setup
-
-- Please make sure you have [nodejs](https://nodejs.org/en/download/) and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed. 
-- Clone this repository.
-- Install node dependencies using the command `yarn install`.
-
-### Running
-To run the NewCP client, use the following command:
-```
-yarn start
-```
+| Method 1                                                            | Method 2                                                                | Method 3 |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------     | ------------------------------------------------------------------- |
+| 1. Download src                                                     | 1. Go to [Releases](https://github.com/KornineQ/NewCP-Patcher/releases) | 1. Download src |
+| 2. Go here %localappdata%\newcp\app-1.6.1\resources\app             | 2. Download it                                                          | 2. Please make sure you have [nodejs](https://nodejs.org/en/download/) and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed. |
+| 3. Delete everything from that dir                                  | 3. Unzip                                                                | 3. Install node dependencies using the command ```yarn install.``` |
+| 4. Paste everything to dir where you deleted files, patched files.  | 4. Done                                                                 | 4. To run the NewCP Patcher: ```yarn start``` |
