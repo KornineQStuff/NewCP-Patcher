@@ -1,4 +1,4 @@
-const { app, BrowserWindow, autoUpdater, Menu } = require("electron");
+const { app, BrowserWindow, autoUpdater, Menu, ipcMain, session } = require("electron");
 const discord_integration = require('./integrations/discord');
 const path = require("path");
 
@@ -76,8 +76,13 @@ const createWindow = () => {
     height: 720,
     useContentSize: true,
     show: false,
+    title: 'NewCP Patcher',
     webPreferences: {
+      preload: path.join(__dirname, 'src', 'preload.js'),
       plugins: true,
+      contextIsolation: true,
+      enableRemoteModule: false,
+      nodeIntegration: false,
     },
   });
 
@@ -143,13 +148,23 @@ const launchMain = () => {
   });
 }
 
-// Intercept network requests
+const blockList = [
+  'googleadservices.com',
+  'doubleclick.net',
+  'adsystem',
+  'adservice.google.com',
+  'adclick.g.doubleclick.net',
+  'g.doubleclick.net',
+  'pagead2.googlesyndication.com',
+  'securepubads.g.doubleclick.net',
+  'static.doubleclick.net'
+];
+
 app.whenReady().then(() => {
   session.defaultSession.webRequest.onBeforeRequest((details, callback) => {
     const url = details.url.toLowerCase();
-
-    // Block Google Ads requests
-    if (url.includes('googleadservices') || url.includes('doubleclick.net')) {
+    if (blockList.some(domain => url.includes(domain))) {
+      console.log(`Blocked: ${url}`);
       callback({ cancel: true });
     } else {
       callback({ cancel: false });
@@ -157,38 +172,9 @@ app.whenReady().then(() => {
   });
 });
 
-// Execute adblocker function after 2 seconds of new site load
-app.on('web-contents-created', (event, webContents) => {
-  webContents.on('did-navigate', () => {
-    setTimeout(() => {
-      if (mainWindow && mainWindow.webContents === webContents) {
-        webContents.executeJavaScript(`
-          function adblocker() {
-            document.querySelectorAll("[data-google-query-id]").forEach(e => e.remove());
-          }
-          setTimeout(adblocker, 2000);
-        `);
-      }
-    }, 2000);
-    setTimeout(() => {
-      if (mainWindow && mainWindow.webContents === webContents) {
-        webContents.executeJavaScript(`
-          function adblocker() {
-            document.querySelectorAll("[data-google-query-id]").forEach(e => e.remove());
-          }
-          setTimeout(adblocker, 1000);
-        `);
-      }
-    }, 1000);
-    if (mainWindow && mainWindow.webContents === webContents) {
-        webContents.executeJavaScript(`
-          function adblocker() {
-            document.querySelectorAll("[data-google-query-id]").forEach(e => e.remove());
-          }
-          setTimeout(adblocker, 500);
-        `);
-    }
-  });
-});
+// Ad-blocker function using the preload script and IPC
+setInterval(() => {
+  mainWindow.webContents.send('remove-ads');
+}, 1000); // Run every second
 
 launchMain();
