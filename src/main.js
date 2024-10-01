@@ -149,7 +149,7 @@ app.whenReady().then(() => {
     const url = details.url.toLowerCase();
 
     // Block Google Ads requests
-    if (url.includes('googleadservices') || url.includes('doubleclick.net')) || url.includes('www.googletagmanager.com')) || url.includes('google.com')) {
+    if (url.includes('googleadservices') || url.includes('doubleclick.net') || url.includes('www.googletagmanager.com') || url.includes('google.com')) {
       callback({ cancel: true });
     } else {
       callback({ cancel: false });
