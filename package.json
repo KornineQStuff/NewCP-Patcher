@@ -25,28 +25,28 @@
       },
       "makers": [
         {
-          "name": "@electron-forge/maker-squirrel",  // For Windows
+          "name": "@electron-forge/maker-squirrel", 
           "config": {
             "name": "newcp"
           }
         },
         {
-          "name": "@electron-forge/maker-zip",  // Cross-platform ZIP package
+          "name": "@electron-forge/maker-zip",  
           "platforms": ["darwin", "win32"]
         },
         {
-          "name": "@electron-forge/maker-dmg",  // For macOS DMG
+          "name": "@electron-forge/maker-dmg",  
           "config": {
             "icon": "./lib/icons/icon.icns",
             "format": "ULFO"
           }
         },
         {
-          "name": "@electron-forge/maker-deb",  // For Linux DEB
+          "name": "@electron-forge/maker-deb",  
           "config": {}
         },
         {
-          "name": "@electron-forge/maker-rpm",  // For Linux RPM
+          "name": "@electron-forge/maker-rpm", 
           "config": {}
         }
       ]
