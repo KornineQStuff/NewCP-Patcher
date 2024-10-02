@@ -1,8 +1,8 @@
 {
-  "name": "NewCP",
-  "productName": "NewCP",
+  "name": "NewCP-Patcher",
+  "productName": "NewCP-Patcher",
   "version": "1.0.2",
-  "description": "NewCP App",
+  "description": "NewCP Patch",
   "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -15,9 +15,43 @@
     "lint": "echo \"No linting configured\""
   },
   "keywords": [],
-  "author": "NewCP",
+  "author": "KornineQStuff",
   "license": "MIT",
-  "config": {},
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./lib/icons/icon", 
+        "asar": true
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",  // For Windows
+          "config": {
+            "name": "newcp"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",  // Cross-platform ZIP package
+          "platforms": ["darwin", "win32"]
+        },
+        {
+          "name": "@electron-forge/maker-dmg",  // For macOS DMG
+          "config": {
+            "icon": "./lib/icons/icon.icns",
+            "format": "ULFO"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-deb",  // For Linux DEB
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",  // For Linux RPM
+          "config": {}
+        }
+      ]
+    }
+  },
   "build": {
     "extraResources": [
       {
@@ -28,8 +62,8 @@
         ]
       }
     ],
-    "appId": "com.newcp.ncp-app",
-    "productName": "NewCP",
+    "appId": "com.newcp.ncp-app-patch",
+    "productName": "NewCP-Patcher",
     "copyright": "Copyright © 2020 ${author}",
     "mac": {
       "icon": "./lib/icons/icon.icns",
