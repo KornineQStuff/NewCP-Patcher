@@ -75,12 +75,20 @@ jobs:
 
       - name: Create Release
         id: create_release
+        if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'windows') || startsWith(matrix.os, 'macos')
         run: |
           TAG_NAME=$(date +'%Y%m%d%H%M%S')
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-          gh release create $TAG_NAME out/make/**/*.exe out/make/**/*.dmg out/make/**/*.AppImage out/make/**/*.zip --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+          if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+            gh release create $TAG_NAME out/make/**/*.AppImage out/make/**/*.zip --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+          elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+            gh release create $TAG_NAME out/make/**/*.exe --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+          elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+            gh release create $TAG_NAME out/make/**/*.dmg --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have this secret set up
+
 
       - name: Upload Artifacts
         if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'windows') || startsWith(matrix.os, 'macos')
