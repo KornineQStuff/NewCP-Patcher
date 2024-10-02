@@ -78,7 +78,7 @@ jobs:
         run: |
           TAG_NAME=$(date +'%Y%m%d%H%M%S')
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-          gh release create $TAG_NAME build/**/*.exe build/**/*.dmg build/**/*.AppImage build/**/*.zip --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+          gh release create $TAG_NAME out/make/**/*.exe out/make/**/*.dmg out/make/**/*.AppImage out/make/**/*.zip --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have this secret set up
 
@@ -87,4 +87,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: NCPPatcher-Release-${{ env.TAG_NAME }}
-          path: build/**/*
+          path: out/make/**/*
