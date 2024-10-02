@@ -45,14 +45,15 @@ jobs:
           sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
           sudo flatpak install flathub org.freedesktop.Platform/x86_64/22.08 org.freedesktop.Sdk/x86_64/22.08 org.electronjs.Electron2.BaseApp/x86_64/22.08 -y
           git config --global --add protocol.file.allow always
+          python3 -m ensurepip --upgrade
+          python3 -m pip install --upgrade pip
+          python3 -m pip install setuptools
+          npm install macos-alias
 
       - name: Make and Publish (Ubuntu)
         if: startsWith(matrix.os, 'ubuntu')
         run: |  
           yarn run publish
-          python3 -m ensurepip --upgrade
-          python3 -m pip install --upgrade pip
-          python3 -m pip install setuptools
         env:
           GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
 
@@ -60,9 +61,6 @@ jobs:
         if: startsWith(matrix.os, 'windows')
         run: |
           yarn run publish-windows
-          python3 -m ensurepip --upgrade
-          python3 -m pip install --upgrade pip
-          python3 -m pip install setuptools
         env:
           GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
         
@@ -70,9 +68,5 @@ jobs:
         if: startsWith(matrix.os, 'macos')
         run: | 
           yarn run publish-mac
-          python3 -m ensurepip --upgrade
-          python3 -m pip install --upgrade pip
-          python3 -m pip install setuptools
-          npm install macos-alias
         env:
           GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
