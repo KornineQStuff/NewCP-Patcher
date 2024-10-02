@@ -38,7 +38,6 @@ jobs:
           python3 -m ensurepip --upgrade
           python3 -m pip install --upgrade pip
           python3 -m pip install setuptools
-          npm install macos-alias
 
       - name: Install flatpak
         if: startsWith(matrix.os, 'ubuntu')
@@ -68,6 +67,7 @@ jobs:
       - name: Make and Publish (MAC)
         if: startsWith(matrix.os, 'macos')
         run: | 
+          npm install macos-alias
           yarn run publish-mac
         env:
           GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
