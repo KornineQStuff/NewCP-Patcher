@@ -81,11 +81,11 @@ jobs:
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
           ls out/make
           if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
-            gh release create $TAG_NAME out/make/**/*.AppImage out/make/**/*.zip --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+            gh release create $TAG_NAME out/make/*.AppImage out/make/*.zip --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
           elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-            gh release create $TAG_NAME out/make/**/*.exe --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+            gh release create $TAG_NAME out/make/*.exe --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
           elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
-            gh release create $TAG_NAME out/make/**/*.dmg --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+            gh release create $TAG_NAME out/make/*.dmg --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have this secret set up
@@ -96,4 +96,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: NCPPatcher-Release-${{ env.TAG_NAME }}
-          path: out/make/**/*
+          path: out/make/*
