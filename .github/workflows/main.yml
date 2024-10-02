@@ -88,7 +88,7 @@ jobs:
             gh release create $TAG_NAME out/make/*.dmg --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
           fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have this secret set up
+          GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }} # Ensure you have this secret set up
 
 
       - name: Upload Artifacts
