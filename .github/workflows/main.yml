@@ -79,6 +79,7 @@ jobs:
         run: |
           TAG_NAME=$(date +'%Y%m%d%H%M%S')
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          ls out/make
           if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
             gh release create $TAG_NAME out/make/**/*.AppImage out/make/**/*.zip --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
           elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
