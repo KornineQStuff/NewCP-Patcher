@@ -71,3 +71,20 @@ jobs:
           yarn run publish-mac
         env:
           GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
+
+
+      - name: Create Release
+        id: create_release
+        run: |
+          TAG_NAME=$(date +'%Y%m%d%H%M%S')
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          gh release create $TAG_NAME build/**/*.exe build/**/*.dmg build/**/*.AppImage build/**/*.zip --title "Release $TAG_NAME" --notes "Automated release created by GitHub Actions."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have this secret set up
+
+      - name: Upload Artifacts
+        if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'windows') || startsWith(matrix.os, 'macos')
+        uses: actions/upload-artifact@v2
+        with:
+          name: NCPPatcher-Release-${{ env.TAG_NAME }}
+          path: build/**/*
