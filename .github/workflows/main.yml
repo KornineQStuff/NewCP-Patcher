@@ -26,7 +26,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-
+          
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          
       - name: Install dependencies
         run: yarn
 
@@ -55,6 +60,10 @@ jobs:
         
       - name: Make and Publish (MAC)
         if: startsWith(matrix.os, 'macos')
-        run: yarn run publish-mac
+        run: | 
+          yarn run publish-mac
+          python3 -m ensurepip --upgrade
+          python3 -m pip install --upgrade pip
+          python3 -m pip install setuptools
         env:
           GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
