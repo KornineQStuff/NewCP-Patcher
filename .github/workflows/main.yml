@@ -84,7 +84,7 @@ jobs:
 
       - name: Upload Artifacts
         if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'windows') || startsWith(matrix.os, 'macos')
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: NCPPatcher-Release-${{ env.TAG_NAME }}
           path: build/**/*
